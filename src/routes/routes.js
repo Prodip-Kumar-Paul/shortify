@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
 
-//import NotFound from "../pages/404";
+import Home from "../pages/Home";
+import UrlPage from "../pages/UrlPage";
+import NotFound from "../component/404";
 
 const AllRoutes = () => {
    return (
@@ -9,8 +10,8 @@ const AllRoutes = () => {
          <BrowserRouter>
             <Routes>
                <Route path="/" element={<Home />} />
-               <Route path="/forU?urlCode=" element={<Home />} />
-               {/* <Route path="/404" element={<NotFound />} /> */}
+               <Route path="/forU/:urlCode" element={<UrlPage />} />
+               <Route path="*" element={<NotFound />} />
             </Routes>
          </BrowserRouter>
       </>
