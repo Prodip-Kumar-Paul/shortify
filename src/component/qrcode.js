@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import QRCode from "react-qr-code";
 
-const qrcodecomponent = () => {
+const QRGenerator = () => {
     const [url, setUrl] = useState("");
     const [qrData, setQrData] = useState("");
     const submitUrl = async (e) => {
@@ -14,10 +14,6 @@ const qrcodecomponent = () => {
             let res = await axios.post("https://smiling-tick-pocketbook.cyclic.app/api/v1/url/createShortUrl", {
                 link: url
             });
-            // console.log(res);
-            // if (!res) {
-            //   console.log("something going wrong");
-            // }
             if (res.status) {
                 console.log(res.data.data.shortUrl);
                 setQrData(res.data.data.shortUrl);
@@ -47,4 +43,4 @@ const qrcodecomponent = () => {
     );
 }
 
-export default qrcodecomponent;
+export default QRGenerator;
