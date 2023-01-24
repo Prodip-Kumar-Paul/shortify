@@ -1,0 +1,26 @@
+.form_container {
+   border: 3px solid #2f2f2f;
+   border-radius: 5px;
+   padding: 5%;
+   text-align: center;
+   background-color: #a9c9ff;
+   background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+}
+
+.form_heading {
+   font-family: Georgia, "Times New Roman", Times, serif;
+   padding: 5px;
+   /* border: 5px solid blue; */
+}
+.inputarea {
+   border: 5px solid green;
+   padding: 5px;
+   border-radius: 2px;
+   margin: 20px;
+   size: 2rem;
+}
+.btn {
+   padding: 2px;
+   border-radius: 2px;
+   /* background-color: #A9C9FF; */
+}

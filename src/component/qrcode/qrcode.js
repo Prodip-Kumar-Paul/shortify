@@ -1,10 +1,12 @@
 import { useState } from "react";
 import QRCode from "react-qr-code";
-import apis from "../helper/Apis";
-import { http } from "../helper/Http";
-
+import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import apis from "../../helper/Apis";
+import classes from "./qrcode.module.css";
+import { http } from "../../helper/Http";
 
 const QRGenerator = () => {
    const [url, setUrl] = useState("");
@@ -22,11 +24,11 @@ const QRGenerator = () => {
       e.preventDefault();
       if (!url) {
          toast.error("No URL given", {
-            position: toast.POSITION.TOP_LEFT,
+            position: toast.POSITION.TOP_RIGHT,
          });
       } else if (!isValidUrl(url)) {
          toast.error("Invalid URL given", {
-            position: toast.POSITION.TOP_LEFT,
+            position: toast.POSITION.TOP_RIGHT,
          });
       } else {
          let res = await http(`${apis.CREATE_SHORT_URL}`, {
@@ -34,10 +36,9 @@ const QRGenerator = () => {
          });
          if (!res.data.status) {
             toast.error(`${res.data.message}`, {
-               position: toast.POSITION.TOP_LEFT,
+               position: toast.POSITION.TOP_RIGHT,
             });
          }
-         // console.log(res.data.data?.shortUrl);
          setQrData(res.data.data?.shortUrl);
       }
    };
@@ -47,16 +48,24 @@ const QRGenerator = () => {
    };
 
    return (
-      <div className="App">
+      <div className={classes.form_container}>
          <ToastContainer />
 
          {!qrData ? (
-            <form onSubmit={submitUrl}>
-               <label>Please Enter The URL: </label>
-               <input value={url} onChange={handleChange} name="url" />
+            <Form className={classes.form_heading}>
+               <h3>Type URL OR Paste URL: </h3>
+               <Form.Control
+                  type="textarea"
+                  placeholder="Long URL"
+                  onChange={handleChange}
+                  className={classes.inputarea}
+                  size="lg"
+               />
 
-               <button type="submit">Submit</button>
-            </form>
+               <div className={classes.btn}>
+                  <Button onClick={submitUrl}>Shorten URL</Button>
+               </div>
+            </Form>
          ) : (
             <div>
                <label>Your QR Code is: </label>

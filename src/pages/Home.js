@@ -1,10 +1,7 @@
-import QRGenerator from "../component/qrcode";
+import QRGenerator from "../component/qrcode/qrcode";
+
 const Home = () => {
-   return (
-      <>
-         <QRGenerator />
-      </>
-   );
+   return <QRGenerator />;
 };
 
 export default Home;
