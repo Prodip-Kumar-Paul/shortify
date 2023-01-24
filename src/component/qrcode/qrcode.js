@@ -11,6 +11,7 @@ import { http } from "../../helper/Http";
 const QRGenerator = () => {
    const [url, setUrl] = useState("");
    const [qrData, setQrData] = useState("");
+   const [copiedText, setCopiedText] = useState("");
 
    const isValidUrl = (urlString) => {
       try {
@@ -39,6 +40,7 @@ const QRGenerator = () => {
                position: toast.POSITION.TOP_RIGHT,
             });
          }
+         setUrl(res.data.data?.shortUrl);
          setQrData(res.data.data?.shortUrl);
       }
    };
@@ -67,9 +69,40 @@ const QRGenerator = () => {
                </div>
             </Form>
          ) : (
-            <div>
-               <label>Your QR Code is: </label>
-               <QRCode value={qrData} />
+            <div className={classes.qr_container}>
+               <h3>Copy Short URL</h3>
+               <input type="textarea" size="lg" value={url} disabled />
+               <hr />
+               <div>
+                  <h3>Scan QR Code : </h3>
+                  <QRCode value={qrData} />
+                  <div>
+                     {!copiedText ? (
+                        <Button
+                           variant="primary"
+                           onClick={() => {
+                              setCopiedText(url);
+                              navigator.clipboard.writeText(url);
+                              console.log(url);
+                              alert("Short URL copied !");
+                           }}
+                        >
+                           Copy
+                        </Button>
+                     ) : (
+                        <Button variant="primary">Text Copied</Button>
+                     )}{" "}
+                     {/* <Button variant="secondary">Share</Button>{" "} */}
+                     <Button
+                        variant="success"
+                        onClick={() => {
+                           window.open(url);
+                        }}
+                     >
+                        Go there
+                     </Button>{" "}
+                  </div>
+               </div>
             </div>
          )}
       </div>

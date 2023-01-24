@@ -13,14 +13,41 @@
    /* border: 5px solid blue; */
 }
 .inputarea {
-   border: 5px solid green;
-   padding: 5px;
-   border-radius: 2px;
-   margin: 20px;
-   size: 2rem;
+   background-color: rgb(233, 233, 244);
+   text-align: center;
+   border: 3px solid #2f2f2f;
+   border-radius: 10px;
+   height: 3rem;
+   width: 80%;
+   margin-bottom: 20px;
 }
 .btn {
    padding: 2px;
-   border-radius: 2px;
+   /* border-radius: 2px; */
    /* background-color: #A9C9FF; */
 }
+.qr_container {
+   text-align: center;
+}
+
+.qr_container input {
+   background-color: whitesmoke;
+   font-weight: bold;
+   text-align: center;
+   border-radius: 20px;
+   height: 3rem;
+   width: 70%;
+
+
+}
+
+@media screen and (max-width: 600px) {
+   .qr_container input {
+      background-color: whitesmoke;
+   font-weight: bold;
+   text-align: center;
+   border-radius: 20px;
+   height: 3rem;
+   width: 100%;
+   }
+ }

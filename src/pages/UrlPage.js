@@ -1,5 +1,5 @@
-import { useCallback, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,6 +8,7 @@ import apis from "../helper/Apis";
 
 const UrlPage = () => {
    let { urlCode } = useParams();
+   let [url, setUrl] = useState("");
 
    const fetchDetails = useCallback(async () => {
       try {
@@ -23,6 +24,7 @@ const UrlPage = () => {
          });
 
          window.location.replace(`${res.data.data.longUrl}`);
+         setUrl(res.data.data.longUrl);
       } catch (err) {
          console.log(err);
       }
@@ -38,16 +40,16 @@ const UrlPage = () => {
          console.log(err);
       });
       // console.log(res);
-   }, [urlCode]);
-
-   //  const notify = () => {
-
-   //  };
+   }, [urlCode, fetchDetails]);
 
    return (
       <div>
          <ToastContainer />
-         <h1>value = {urlCode}</h1>;
+         <div className="text-center">
+            <h1>Hold On, You will be Redirected soon :)</h1>
+            <h3>OR click the link below</h3>
+            <Link to={url}>Go to actual site !</Link>
+         </div>
       </div>
    );
 };
